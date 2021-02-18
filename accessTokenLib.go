@@ -214,7 +214,7 @@ func (p *AccessTokenLib) sign(message []byte) (out []byte, err error) {
 	h.Write(message)
 	d := h.Sum(nil)
 */
-	d := []byte(sha256.Sum256(message))
+	d := []byte(sha256.Sum256(message)[:])
 
 	return rsa.SignPKCS1v15(rand.Reader, p.privateKey.(*rsa.PrivateKey), crypto.SHA256, d)
 }
