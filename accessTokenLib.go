@@ -204,16 +204,17 @@ func (p *AccessTokenLib) ParsePublicKey(pemBytes []byte) (err error) {
  * \return err error
  */
 func (p *AccessTokenLib) sign(message []byte) (out []byte, err error) {
-	h := sha256.New()
-	h.Write(message)
-	d := h.Sum(nil)
-
-
 	if p.flagPrivateKey == false {
 		err = fmt.Errorf("private key must be loaded")
 		return
 	}
 
+/*
+	h := sha256.New()
+	h.Write(message)
+	d := h.Sum(nil)
+*/
+	d := sha256.Sum256(message)
 
 	return rsa.SignPKCS1v15(rand.Reader, p.privateKey.(*rsa.PrivateKey), crypto.SHA256, d)
 }
