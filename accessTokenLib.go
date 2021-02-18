@@ -216,6 +216,7 @@ func (p *AccessTokenLib) sign(message []byte) (out []byte, err error) {
 */
 	d := sha256.Sum256(message)
 
+
 	return rsa.SignPKCS1v15(rand.Reader, p.privateKey.(*rsa.PrivateKey), crypto.SHA256, []byte(d[:]))
 }
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
@@ -226,18 +227,20 @@ func (p *AccessTokenLib) sign(message []byte) (out []byte, err error) {
  * \return err error
  */
 func (p *AccessTokenLib) verify(message []byte, signature []byte) (err error) {
-	h := sha256.New()
-	h.Write(message)
-	d := h.Sum(nil)
-
-
 	if p.flagPublicKey == false {
 		err = fmt.Errorf("public key must be loaded")
 		return
 	}
 
+/*
+	h := sha256.New()
+	h.Write(message)
+	d := h.Sum(nil)
+*/
+	d := sha256.Sum256(message)
 
-	return rsa.VerifyPKCS1v15(p.publicKey.(*rsa.PublicKey), crypto.SHA256, d, signature)
+
+	return rsa.VerifyPKCS1v15(p.publicKey.(*rsa.PublicKey), crypto.SHA256, []byte(d[:]), signature)
 }
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 /**
