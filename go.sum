@@ -1,0 +1,4 @@
+github.com/google/uuid v1.3.0 h1:t6JiXgmwXMjEs8VusXIJk2BXHsn+wx8BZdTaoZ5fu7I=
+github.com/google/uuid v1.3.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
+github.com/progman/libcore.go v0.0.0-20220628165451-6775f46cea3e h1:cp7zjnPpSSAWaUQ8hORBNOps3XICL2US28OGaIVv7hE=
+github.com/progman/libcore.go v0.0.0-20220628165451-6775f46cea3e/go.mod h1:kd9GpN+86BqltGDMHjVmkYRq7YVLnr7/3HfPEaZHzfA=
